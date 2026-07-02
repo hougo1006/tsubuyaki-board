@@ -29,6 +29,12 @@
         <Bug pattern="EI_EXPOSE_REP2"/>
     </Match>
 
+    <!-- Spring Controller のコンストラクタ DI は内部表現の公開に当たらない -->
+    <Match>
+        <Class name="~.*\.controller\..*Controller"/>
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+
     <!-- Lombok 等で生成される equals/hashCode -->
     <Match>
         <Bug pattern="HE_EQUALS_USE_HASHCODE"/>

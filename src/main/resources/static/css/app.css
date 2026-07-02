@@ -1,10 +1,13 @@
-/* 最小スタイル — 受講生が必要に応じて拡張する */
 :root {
-    --color-bg: #fafafa;
-    --color-text: #222;
-    --color-accent: #1d4ed8;
-    --color-border: #e5e7eb;
-    --color-muted: #6b7280;
+    --color-bg: #f7f9f9;
+    --color-surface: #fff;
+    --color-text: #0f1419;
+    --color-accent: #1d9bf0;
+    --color-accent-hover: #1a8cd8;
+    --color-border: #cfd9de;
+    --color-muted: #536471;
+    --color-danger: #f4212e;
+    --shadow-post: 0 4px 14px rgb(15 20 25 / 10%);
 }
 
 * {
@@ -21,31 +24,152 @@ body {
 }
 
 main {
-    max-width: 720px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    width: min(100%, 640px);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0;
+    background: var(--color-surface);
+    border-right: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
 }
 
 h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin: 0;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    background: rgb(255 255 255 / 92%);
+    backdrop-filter: blur(12px);
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+nav {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    color: transparent;
+}
+
+nav a {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus {
+    background: #eff3f4;
+    outline: none;
 }
 
 .toolbar {
-    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 1rem;
+    align-items: center;
+    margin: 0;
+    padding: 1rem;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+}
+
+input,
+select {
+    min-height: 42px;
+    padding: 0 0.85rem;
+}
+
+input[type="search"] {
+    border-radius: 999px;
+    background: #eff3f4;
+}
+
+textarea {
+    min-height: 132px;
+    padding: 0.75rem 0.85rem;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgb(29 155 240 / 16%);
+    outline: none;
+}
+
+button {
+    min-height: 38px;
+    padding: 0 1rem;
+    border: 0;
+    border-radius: 999px;
+    background: var(--color-text);
+    color: #fff;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+button:hover,
+button:focus {
+    background: #272c30;
+    outline: none;
+}
+
+.toolbar button:first-of-type,
+main > form button[type="submit"] {
+    background: var(--color-accent);
+}
+
+.toolbar button:first-of-type:hover,
+.toolbar button:first-of-type:focus,
+main > form button[type="submit"]:hover,
+main > form button[type="submit"]:focus {
+    background: var(--color-accent-hover);
+}
+
+section > p {
+    margin: 0;
+    padding: 2rem 1rem;
+    color: var(--color-muted);
+    text-align: center;
 }
 
 .post {
     padding: 1rem;
     border: 1px solid #111;
     border-radius: 8px;
-    margin-bottom: 0.75rem;
+    margin: 1rem;
     background: white;
-    box-shadow: 0 2px 6px rgb(0 0 0 / 12%);
+    box-shadow: var(--shadow-post);
 }
 
 .post__author {
-    font-weight: 600;
+    font-weight: 800;
     margin-right: 0.5rem;
 }
 
@@ -63,7 +187,10 @@ h1 {
 }
 
 .posts-list {
+    display: grid;
+    gap: 0.75rem;
     width: 100%;
+    padding: 0 1rem 1rem;
 }
 
 .post-item-link {
@@ -74,15 +201,16 @@ h1 {
 
 .post-item-link:hover,
 .post-item-link:focus {
-    background: #f3f4f6;
+    background: rgb(15 20 25 / 3%);
+    outline: none;
 }
 
 .post-item {
-    padding: 0.75rem 1rem;
+    padding: 0.85rem 1rem;
     border: 1px solid #111;
     border-radius: 8px;
-    margin-bottom: 0.75rem;
-    box-shadow: 0 2px 6px rgb(0 0 0 / 12%);
+    margin: 0;
+    box-shadow: var(--shadow-post);
 }
 
 .post-item__header {
@@ -97,16 +225,17 @@ h1 {
 .post-item__body,
 .post-item__likes {
     color: var(--color-text);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 .post-item__author {
-    font-weight: 600;
+    font-weight: 800;
 }
 
 .post-item__created-at {
     flex-shrink: 0;
     white-space: nowrap;
+    color: var(--color-muted);
 }
 
 .post-item__body {
@@ -118,13 +247,17 @@ h1 {
 }
 
 .post-item__likes {
-    margin: 0.5rem 0 0;
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    margin: 0.65rem 0 0;
     color: var(--color-muted);
+    font-size: 0.85rem;
 }
 
 .post-tag-inline {
     color: var(--color-accent);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .post-detail {
@@ -133,12 +266,75 @@ h1 {
 
 .like-action {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
     align-items: center;
-    margin-top: 1rem;
+    margin: 0;
+    padding: 0.75rem 1rem 1rem;
+    border-top: 1px solid var(--color-border);
 }
 
 .like-count {
     margin: 0;
     color: var(--color-muted);
+    font-weight: 700;
+}
+
+.like-action form:last-child button {
+    border: 1px solid rgb(244 33 46 / 35%);
+    background: #fff;
+    color: var(--color-danger);
+}
+
+.like-action form:last-child button:hover,
+.like-action form:last-child button:focus {
+    background: rgb(244 33 46 / 10%);
+}
+
+main > form:not(.toolbar) {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+main > form:not(.toolbar) div {
+    display: grid;
+    gap: 0.35rem;
+}
+
+label {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.error {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgb(244 33 46 / 35%);
+    border-radius: 8px;
+    background: rgb(244 33 46 / 8%);
+    color: var(--color-danger);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+@media (max-width: 640px) {
+    main {
+        border-right: 0;
+        border-left: 0;
+    }
+
+    .toolbar {
+        grid-template-columns: 1fr;
+    }
+
+    .toolbar button {
+        width: 100%;
+    }
+
+    .post-item__header {
+        display: grid;
+        gap: 0.15rem;
+    }
 }
